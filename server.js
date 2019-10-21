@@ -17,15 +17,15 @@ app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
 
-// //serve static assets in production
-// if (process.env.NODE_ENV === 'production') {
-//   //set static folder
-//   app.use(express.static('client/build'));
+//serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+  //set static folder
+  app.use(express.static('client/build'));
 
-//   app.get('*', (res, res) => {
-//       res.sendFile(path.resolve(__dirnam, 'client', 'build', 'index.html'))
-//   });
-// }
+  app.get('*', (res, res) => {
+      res.sendFile(path.resolve(__dirnam, 'client', 'build', 'index.html'))
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 
