@@ -3,7 +3,6 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
-// import { LOGIN_FAIL } from '../../actions/types';
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -21,7 +20,6 @@ const Login = ({ login, isAuthenticated }) => {
     login(email, password);
   };
 
-  //redirect if logged in
   if (isAuthenticated) {
     return <Redirect to='/dashboard' />;
   }
@@ -30,7 +28,7 @@ const Login = ({ login, isAuthenticated }) => {
     <Fragment>
       <h1 className='large text-primary'>Sign In</h1>
       <p className='lead'>
-        <i className='fas fa-user'></i> Sign into Your Account
+        <i className='fas fa-user' /> Sign Into Your Account
       </p>
       <form className='form' onSubmit={e => onSubmit(e)}>
         <div className='form-group'>
@@ -53,7 +51,6 @@ const Login = ({ login, isAuthenticated }) => {
             minLength='6'
           />
         </div>
-
         <input type='submit' className='btn btn-primary' value='Login' />
       </form>
       <p className='my-1'>

@@ -1,22 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const { check, validationResult } = require('express-validator/check');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const { check, validationResult } = require('express-validator/check');
+
 const User = require('../../models/User');
 
-// @route     POST api/users
-// @desc      Register user
-// @access    Public
+// @route    POST api/users
+// @desc     Register user
+// @access   Public
 router.post(
   '/',
   [
     check('name', 'Name is required')
       .not()
       .isEmpty(),
-    check('email', 'Please include valid email').isEmail(),
+    check('email', 'Please include a valid email').isEmail(),
     check(
       'password',
       'Please enter a password with 6 or more characters'
@@ -39,7 +40,6 @@ router.post(
           .json({ errors: [{ msg: 'User already exists' }] });
       }
 
-      // get users gravatar
       const avatar = gravatar.url(email, {
         s: '200',
         r: 'pg',
@@ -52,14 +52,13 @@ router.post(
         avatar,
         password
       });
-      // encript password using bcrypt
+
       const salt = await bcrypt.genSalt(10);
 
       user.password = await bcrypt.hash(password, salt);
 
       await user.save();
 
-      //return jsonwebtoken
       const payload = {
         user: {
           id: user.id
@@ -77,7 +76,7 @@ router.post(
       );
     } catch (err) {
       console.error(err.message);
-      res.status(500).send('server error');
+      res.status(500).send('Server error');
     }
   }
 );

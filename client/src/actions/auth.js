@@ -12,11 +12,12 @@ import {
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
-//load user
+// Load User
 export const loadUser = () => async dispatch => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
+
   try {
     const res = await axios.get('/api/auth');
 
@@ -31,7 +32,7 @@ export const loadUser = () => async dispatch => {
   }
 };
 
-//register user
+// Register User
 export const register = ({ name, email, password }) => async dispatch => {
   const config = {
     headers: {
@@ -56,13 +57,14 @@ export const register = ({ name, email, password }) => async dispatch => {
     if (errors) {
       errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
     }
+
     dispatch({
       type: REGISTER_FAIL
     });
   }
 };
 
-//login user
+// Login User
 export const login = (email, password) => async dispatch => {
   const config = {
     headers: {
@@ -87,13 +89,14 @@ export const login = (email, password) => async dispatch => {
     if (errors) {
       errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
     }
+
     dispatch({
       type: LOGIN_FAIL
     });
   }
 };
 
-//logout / clear profile
+// Logout / Clear Profile
 export const logout = () => dispatch => {
   dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });

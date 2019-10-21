@@ -10,10 +10,10 @@ const connectDB = async () => {
       useFindAndModify: false
     });
 
-    console.log('mongoDB connected. this comes from the config file');
+    console.log('MongoDB Connected...');
   } catch (err) {
     console.error(err.message);
-    //exit process with failure
+    // Exit process with failure
     process.exit(1);
   }
 };
