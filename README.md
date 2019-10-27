@@ -1,8 +1,8 @@
-# DevConnector 2.0
+# LinkClone
 
 > Social network for developers
 
-This is a MERN stack application from the "MERN Stack Front To Back" course on [Udemy](https://www.udemy.com/mern-stack-front-to-back/?couponCode=TRAVERSYMEDIA). It is a small social network app that includes authentication, profiles and forum posts.
+
 
 ## Quick Start
 
@@ -37,9 +37,7 @@ npm run build
 
 ### Author
 
-Brad Traversy
-[Traversy Media](http://www.traversymedia.com)
-
+Kyle Harrison
 ### Version
 
 2.0.0
